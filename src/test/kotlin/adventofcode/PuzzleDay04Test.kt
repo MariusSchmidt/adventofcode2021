@@ -28,7 +28,7 @@ internal class PuzzleDay04Test {
         assertTrue(bingo.won)
         assertEquals(6, bingo.drawsToWin)
         assertEquals(25, bingo.lastNumber)
-        assertEquals(6175, bingo.score())
+        assertEquals(6225, bingo.score())
     }
 
     @Test
@@ -47,15 +47,33 @@ internal class PuzzleDay04Test {
 
     @Test
     internal fun determineFirstWinningBoardSample() {
-        val firstWinningBoard = PuzzleDay04().determineFirstWinningBoard(testfile)
-        assertEquals(3, firstWinningBoard.id)
-        assertEquals(4512, firstWinningBoard.score())
+        val board = PuzzleDay04().determineWinningBoardOrder(testfile).first()
+        assertEquals(3, board.id)
+        assertEquals(12, board.drawsToWin)
+        assertEquals(4512, board.score())
     }
 
     @Test
     internal fun determineFirstWinningBoard() {
-        val firstWinningBoard = PuzzleDay04().determineFirstWinningBoard(datafile)
-        assertEquals(44, firstWinningBoard.id)
-        assertEquals(58374, firstWinningBoard.score())
+        val board = PuzzleDay04().determineWinningBoardOrder(datafile).first()
+        assertEquals(44, board.id)
+        assertEquals(22, board.drawsToWin)
+        assertEquals(58374, board.score())
+    }
+
+    @Test
+    internal fun determineLastWinningBoardSample() {
+        val board = PuzzleDay04().determineWinningBoardOrder(testfile).last()
+        assertEquals(2, board.id)
+        assertEquals(15, board.drawsToWin)
+        assertEquals(1924, board.score())
+    }
+
+    @Test
+    internal fun determineLastWinningBoard() {
+        val board = PuzzleDay04().determineWinningBoardOrder(datafile).last()
+        assertEquals(17, board.id)
+        assertEquals(82, board.drawsToWin)
+        assertEquals(11377, board.score())
     }
 }

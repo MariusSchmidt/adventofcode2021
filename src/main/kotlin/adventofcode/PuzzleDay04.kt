@@ -5,13 +5,14 @@ import java.io.File
 class PuzzleDay04 {
 
 
-    fun determineFirstWinningBoard(file: File): BingoBoard {
+    fun determineWinningBoardOrder(file: File): List<BingoBoard> {
         val pulls = readPulls(file)
         val boards = readBoards(file)
-        val first = pulls.flatMap { pulledNumber ->
-                boards.onEach { it.drawNumber(pulledNumber) }.filter { it.won }
-            }.first()
-        return first
+        return pulls.flatMap { pulledNumber ->
+                boards.filter { !it.won }
+                    .onEach { it.drawNumber(pulledNumber) }
+                    .filter { it.won }
+            }
     }
 
     private fun readPulls(file: File): List<Int> = file.useLines { seq ->
