@@ -64,7 +64,7 @@ internal class PuzzleDay06Test {
     @Test
     internal fun oceanOfEightyGeneration() {
         val ocean = Ocean.populate(datafile)
-        (0 until 256).onEach {
+        (0 until 80).onEach {
             ocean.oldenOneDay()
         }
         softAssert {
