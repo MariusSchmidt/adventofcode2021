@@ -1,7 +1,7 @@
 package adventofcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.assertj.core.api.Assertions.assertThat
+import kotlin.test.Test
 
 internal class PuzzleDay01Test {
 
@@ -11,22 +11,26 @@ internal class PuzzleDay01Test {
 
     @Test
     fun countDepthIncreaseSample() {
-        assertEquals(7, PuzzleDay01().countDepthIncrease(testfile))
+        val increase = PuzzleDay01().countDepthIncrease(testfile)
+        assertThat(increase).isEqualTo(7)
     }
 
     @Test
     fun countDepthIncreasePuzzle() {
-        assertEquals(1557, PuzzleDay01().countDepthIncrease(datafile))
+        val increase = PuzzleDay01().countDepthIncrease(datafile)
+        assertThat(increase).isEqualTo(1557)
     }
 
     @Test
     fun countDepthIncreaseGroupedSample() {
-        assertEquals(5, PuzzleDay01().countDepthIncreaseGrouped(testfile))
+        val increase = PuzzleDay01().countDepthIncreaseGrouped(testfile)
+        assertThat(increase).isEqualTo(5)
     }
 
     @Test
     fun countDepthIncreaseGroupedPuzzle() {
-        assertEquals(1608, PuzzleDay01().countDepthIncreaseGrouped(datafile))
+        val increase = PuzzleDay01().countDepthIncreaseGrouped(datafile)
+        assertThat(increase).isEqualTo(1608)
     }
 
 }

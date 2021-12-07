@@ -1,9 +1,8 @@
 package adventofcode
 
-import org.junit.jupiter.api.Test
+import org.assertj.core.api.Assertions.assertThat
+import kotlin.test.Test
 
-import org.junit.jupiter.api.Assertions.*
-import java.io.File
 
 internal class PuzzleDay03Test {
 
@@ -13,49 +12,51 @@ internal class PuzzleDay03Test {
 
     @Test
     fun readGammaAndEpsilonSample() {
-        assertEquals(22 to 9, PuzzleDay03(5).readGammaAndEpsilon(testfile))
+        assertThat(PuzzleDay03(5).readGammaAndEpsilon(testfile)).isEqualTo(22 to 9)
     }
 
     @Test
     fun readGammaAndEpsilon() {
         val gammaAndEpsilon = PuzzleDay03(12).readGammaAndEpsilon(datafile)
-        assertEquals(190 to 3905, gammaAndEpsilon)
-        assertEquals(741950, gammaAndEpsilon.first * gammaAndEpsilon.second)
+        softAssert {
+            assertThat(gammaAndEpsilon).isEqualTo(190 to 3905)
+            assertThat(gammaAndEpsilon.first * gammaAndEpsilon.second).isEqualTo(741950)
+        }
     }
 
     @Test
     fun readOxigenGeneratorRatingSample() {
         val rating = PuzzleDay03(5).readOxygenScrubberRatings(testfile)
-        assertEquals(23, rating)
+        assertThat(rating).isEqualTo(23)
     }
 
     @Test
     fun readCO2GeneratorRatingSample() {
         val rating = PuzzleDay03(5).readCO2ScrubberRatings(testfile)
-        assertEquals(10, rating)
+        assertThat(rating).isEqualTo(10)
     }
 
     @Test
     fun readLifeSupportRatingSample() {
         val rating = PuzzleDay03(5).readLifeSupportRating(testfile)
-        assertEquals(230, rating)
+        assertThat(rating).isEqualTo(230)
     }
 
     @Test
     fun readOxigenGeneratorRating() {
         val rating = PuzzleDay03(12).readOxygenScrubberRatings(datafile)
-        assertEquals(282, rating)
+        assertThat(rating).isEqualTo(282)
     }
 
     @Test
     fun readCO2GeneratorRating() {
         val rating = PuzzleDay03(12).readCO2ScrubberRatings(datafile)
-        assertEquals(3205, rating)
+        assertThat(rating).isEqualTo(3205)
     }
 
     @Test
     fun readLifeSupportRating() {
         val rating = PuzzleDay03(12).readLifeSupportRating(datafile)
-        assertEquals(903810, rating)
+        assertThat(rating).isEqualTo(903810)
     }
 }

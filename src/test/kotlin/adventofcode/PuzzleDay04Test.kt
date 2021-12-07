@@ -1,8 +1,8 @@
 
 package adventofcode
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
+import org.assertj.core.api.Assertions.assertThat
+import kotlin.test.Test
 
 internal class PuzzleDay04Test {
 
@@ -14,7 +14,7 @@ internal class PuzzleDay04Test {
     internal fun testBingoGameNotWon() {
         val bingo = PuzzleDay04.BingoBoard(1, IntArray(25) { i -> i + 1})
         (1 .. 25 step 2).forEach { bingo.drawNumber(it) }
-        assertFalse(bingo.won)
+        assertThat(bingo.won).isFalse
     }
 
     @Test
@@ -25,10 +25,12 @@ internal class PuzzleDay04Test {
             bingo.drawNumber(it)
         }
         bingo.drawNumber(2)
-        assertTrue(bingo.won)
-        assertEquals(6, bingo.drawsToWin)
-        assertEquals(25, bingo.lastNumber)
-        assertEquals(6225, bingo.score())
+        softAssert {
+            assertThat(bingo.won).isTrue
+            assertThat(bingo.drawsToWin).isEqualTo(6)
+            assertThat(bingo.lastNumber).isEqualTo(25)
+            assertThat(bingo.score()).isEqualTo(6225)
+        }
     }
 
     @Test
@@ -39,41 +41,51 @@ internal class PuzzleDay04Test {
         (21 .. 25).forEach {
             bingo.drawNumber(it)
         }
-        assertTrue(bingo.won)
-        assertEquals(7, bingo.drawsToWin)
-        assertEquals(25, bingo.lastNumber)
-        assertEquals(5175, bingo.score())
+        softAssert {
+            assertThat(bingo.won).isTrue
+            assertThat(bingo.drawsToWin).isEqualTo(7)
+            assertThat(bingo.lastNumber).isEqualTo(25)
+            assertThat(bingo.score()).isEqualTo(5175)
+        }
     }
 
     @Test
     internal fun determineFirstWinningBoardSample() {
         val board = PuzzleDay04().determineWinningBoardOrder(testfile).first()
-        assertEquals(3, board.id)
-        assertEquals(12, board.drawsToWin)
-        assertEquals(4512, board.score())
+        softAssert {
+            assertThat(board.id).isEqualTo(3)
+            assertThat(board.drawsToWin).isEqualTo(12)
+            assertThat(board.score()).isEqualTo(4512)
+        }
     }
 
     @Test
     internal fun determineFirstWinningBoard() {
         val board = PuzzleDay04().determineWinningBoardOrder(datafile).first()
-        assertEquals(44, board.id)
-        assertEquals(22, board.drawsToWin)
-        assertEquals(58374, board.score())
+        softAssert {
+            assertThat(board.id).isEqualTo(44)
+            assertThat(board.drawsToWin).isEqualTo(22)
+            assertThat(board.score()).isEqualTo(58374)
+        }
     }
 
     @Test
     internal fun determineLastWinningBoardSample() {
         val board = PuzzleDay04().determineWinningBoardOrder(testfile).last()
-        assertEquals(2, board.id)
-        assertEquals(15, board.drawsToWin)
-        assertEquals(1924, board.score())
+        softAssert {
+            assertThat(board.id).isEqualTo(2)
+            assertThat(board.drawsToWin).isEqualTo(15)
+            assertThat(board.score()).isEqualTo(1924)
+        }
     }
 
     @Test
     internal fun determineLastWinningBoard() {
         val board = PuzzleDay04().determineWinningBoardOrder(datafile).last()
-        assertEquals(17, board.id)
-        assertEquals(82, board.drawsToWin)
-        assertEquals(11377, board.score())
+        softAssert {
+            assertThat(board.id).isEqualTo(17)
+            assertThat(board.drawsToWin).isEqualTo(82)
+            assertThat(board.score()).isEqualTo(11377)
+        }
     }
 }
